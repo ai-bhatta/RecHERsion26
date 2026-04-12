@@ -1,0 +1,1477 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RecHERsion 2026 | ACM Chapters Collaboration</title>
+  <meta
+    name="description"
+    content="RecHERsion 2026 is an all-girls coding event hosted by ACM-W NIT Karnataka, ACM-W BPDC, and ACM RIT."
+  />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    :root {
+      --bg-950: #0d0717;
+      --bg-900: #150b26;
+      --bg-850: #1b0f30;
+      --card: rgba(77, 41, 124, 0.18);
+      --card-strong: rgba(101, 55, 164, 0.25);
+      --line: rgba(209, 177, 255, 0.22);
+      --text: #f6ecff;
+      --muted: #cfbae9;
+      --primary: #c084fc;
+      --primary-strong: #a855f7;
+      --secondary: #e9d5ff;
+      --accent: #d8b4fe;
+      --danger: #fca5ff;
+      --ok: #e9d5ff;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --shadow-lg: 0 30px 60px rgba(97, 45, 164, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Manrope", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(170, 85, 247, 0.28), transparent 42%),
+        radial-gradient(circle at 82% 18%, rgba(216, 180, 254, 0.2), transparent 35%),
+        radial-gradient(circle at 60% 75%, rgba(139, 92, 246, 0.24), transparent 45%),
+        linear-gradient(180deg, var(--bg-850), var(--bg-950));
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(190, 151, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(190, 151, 255, 0.1) 1px, transparent 1px);
+      background-size: 44px 44px;
+      mask-image: radial-gradient(circle at center, black 35%, transparent 85%);
+      z-index: -1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin-inline: auto;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      backdrop-filter: blur(12px);
+      background: rgba(13, 7, 23, 0.72);
+      border-bottom: 1px solid rgba(201, 165, 247, 0.2);
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 16px 0;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      white-space: nowrap;
+    }
+
+    .brand-mark {
+      height: clamp(40px, 3.2vw, 56px);
+      width: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px rgba(215, 176, 255, 0.28));
+    }
+
+    .brand-year {
+      font-family: "Sora", sans-serif;
+      font-size: clamp(0.95rem, 0.85rem + 0.5vw, 1.2rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--secondary);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    .nav-links a {
+      transition: color 0.2s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible {
+      color: var(--secondary);
+    }
+
+    .menu-btn,
+    .cta-btn,
+    .ghost-btn {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .cta-btn {
+      background: linear-gradient(140deg, var(--primary), var(--primary-strong));
+      color: #22073f;
+      font-weight: 800;
+      padding: 12px 18px;
+      border-radius: 999px;
+      box-shadow: 0 15px 30px rgba(125, 65, 196, 0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .cta-btn:hover,
+    .cta-btn:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 20px 35px rgba(137, 77, 208, 0.5);
+    }
+
+    .menu-btn {
+      display: none;
+      padding: 9px 12px;
+      border-radius: 12px;
+      background: rgba(168, 85, 247, 0.18);
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: clamp(48px, 8vw, 92px) 0 64px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(210, 179, 255, 0.38);
+      background: rgba(150, 84, 239, 0.2);
+      color: var(--secondary);
+      border-radius: 999px;
+      font-size: 0.83rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      padding: 8px 14px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: "Sora", sans-serif;
+      margin: 0;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 {
+      margin-top: 18px;
+      font-size: clamp(2.2rem, 1.7rem + 3.2vw, 4.35rem);
+      line-height: 1.05;
+      text-shadow: 0 0 30px rgba(199, 149, 255, 0.2);
+    }
+
+    .hero p {
+      margin: 16px 0 0;
+      color: var(--muted);
+      max-width: 62ch;
+      font-size: clamp(1rem, 0.95rem + 0.4vw, 1.15rem);
+    }
+
+    .event-theme {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(220, 192, 255, 0.42);
+      background: linear-gradient(135deg, rgba(129, 72, 201, 0.34), rgba(95, 45, 158, 0.18));
+      box-shadow: 0 0 0 rgba(206, 160, 255, 0.35);
+      position: relative;
+      overflow: hidden;
+      animation: themeGlow 3s ease-in-out infinite;
+    }
+
+    .event-theme::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 20%, rgba(234, 214, 255, 0.35) 50%, transparent 80%);
+      transform: translateX(-140%);
+      animation: themeShimmer 3.4s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .theme-label {
+      position: relative;
+      z-index: 1;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #f1e4ff;
+      padding: 5px 9px;
+      border-radius: 999px;
+      background: rgba(231, 206, 255, 0.18);
+      border: 1px solid rgba(238, 221, 255, 0.4);
+    }
+
+    .theme-value {
+      position: relative;
+      z-index: 1;
+      font-family: "Sora", sans-serif;
+      font-weight: 800;
+      font-size: clamp(1rem, 0.92rem + 0.45vw, 1.2rem);
+      background: linear-gradient(90deg, #f1e3ff, #ffe57a, #d8b4fe, #f1e3ff);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 0 8px rgba(255, 229, 122, 0.22);
+      animation: themeTextShift 4s linear infinite, themeTextPop 2.6s ease-in-out infinite;
+    }
+
+    @keyframes themeGlow {
+      0%,
+      100% {
+        box-shadow: 0 0 0 rgba(206, 160, 255, 0.25);
+      }
+      50% {
+        box-shadow: 0 0 24px rgba(206, 160, 255, 0.42);
+      }
+    }
+
+    @keyframes themeShimmer {
+      0% {
+        transform: translateX(-140%);
+      }
+      100% {
+        transform: translateX(140%);
+      }
+    }
+
+    @keyframes themeTextShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 200% 50%;
+      }
+    }
+
+    @keyframes themeTextPop {
+      0%,
+      100% {
+        text-shadow: 0 0 8px rgba(255, 229, 122, 0.2);
+        transform: translateY(0);
+      }
+      50% {
+        text-shadow: 0 0 18px rgba(255, 229, 122, 0.65), 0 0 28px rgba(255, 229, 122, 0.35);
+        transform: translateY(-1px);
+      }
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .ghost-btn {
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(150, 84, 239, 0.08);
+      color: var(--secondary);
+      font-weight: 700;
+      transition: all 0.2s ease;
+    }
+
+    .ghost-btn:hover,
+    .ghost-btn:focus-visible {
+      background: rgba(178, 122, 255, 0.18);
+      border-color: rgba(228, 206, 255, 0.45);
+    }
+
+    .countdown-wrap {
+      background: var(--card-strong);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-lg);
+      padding: 22px;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .countdown-wrap::after {
+      content: "";
+      position: absolute;
+      inset: auto -20% -45% auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(227, 185, 255, 0.33), transparent 70%);
+      pointer-events: none;
+    }
+
+    .countdown-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 12px;
+    }
+
+    .countdown-head h3 {
+      font-size: 1.15rem;
+      margin-bottom: 6px;
+    }
+
+    .countdown-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .time-box {
+      background: rgba(135, 78, 216, 0.24);
+      border: 1px solid rgba(229, 210, 255, 0.2);
+      border-radius: 12px;
+      padding: 12px 8px;
+      text-align: center;
+    }
+
+    .time-box strong {
+      display: block;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+      font-family: "Sora", sans-serif;
+      line-height: 1;
+      color: var(--secondary);
+    }
+
+    .time-box span {
+      display: block;
+      margin-top: 6px;
+      color: #dbc5f7;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+
+    .section {
+      padding: clamp(58px, 8vw, 92px) 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.75rem, 1.25rem + 2vw, 2.7rem);
+    }
+
+    .section-sub {
+      margin-top: 10px;
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    .cards-3 {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .chapter-card,
+    .info-card,
+    .timeline-item,
+    .faq-item,
+    .form-card {
+      border: 1px solid var(--line);
+      background: var(--card);
+      border-radius: var(--radius-md);
+      backdrop-filter: blur(7px);
+    }
+
+    .chapter-card {
+      padding: 18px;
+      min-height: 210px;
+      position: relative;
+      isolation: isolate;
+      transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+    }
+
+    .chapter-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(160deg, rgba(191, 152, 255, 0.16), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      z-index: -1;
+    }
+
+    .chapter-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(223, 194, 255, 0.45);
+      background: rgba(97, 54, 151, 0.25);
+    }
+
+    .chapter-card:hover::before {
+      opacity: 1;
+    }
+
+    .chapter-logo {
+      height: 92px;
+      border-radius: 14px;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      padding: 6px;
+      overflow: clip;
+    }
+
+    .chapter-logo-link {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    .chapter-logo-link:hover,
+    .chapter-logo-link:focus-visible {
+      transform: scale(1.02);
+      filter: drop-shadow(0 0 12px rgba(222, 192, 255, 0.55));
+    }
+
+    .chapter-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+    }
+
+    .chapter-card h3 {
+      font-size: 1.06rem;
+      margin-bottom: 8px;
+    }
+
+    .chapter-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+      line-height: 1.45;
+    }
+
+    .about-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 16px;
+    }
+
+    .info-card {
+      padding: 22px;
+      height: 100%;
+    }
+
+    .info-list {
+      margin: 14px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .info-list li {
+      position: relative;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .info-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      position: absolute;
+      left: 0;
+      top: 8px;
+      box-shadow: 0 0 12px rgba(216, 180, 254, 0.8);
+    }
+
+    .stats-grid {
+      margin-top: 14px;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .stat-chip {
+      padding: 13px 12px;
+      border-radius: 12px;
+      background: rgba(133, 77, 209, 0.22);
+      border: 1px solid rgba(229, 211, 255, 0.18);
+      text-align: center;
+    }
+
+    .stat-chip strong {
+      display: block;
+      font-family: "Sora", sans-serif;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .stat-chip span {
+      font-size: 0.83rem;
+      color: var(--muted);
+    }
+
+    .timeline {
+      margin-top: 24px;
+      position: relative;
+      display: grid;
+      gap: 12px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 12px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: linear-gradient(var(--accent), rgba(186, 143, 255, 0.2));
+      opacity: 0.85;
+    }
+
+    .timeline-item {
+      padding: 14px 14px 14px 36px;
+      position: relative;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      left: 7px;
+      top: 18px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--secondary);
+      box-shadow: 0 0 14px rgba(225, 193, 255, 0.75);
+    }
+
+    .timeline-item:hover {
+      transform: translateX(4px);
+      background: rgba(110, 63, 171, 0.24);
+    }
+
+    .timeline-item .when {
+      font-size: 0.78rem;
+      color: #d7c4ef;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .timeline-item h4 {
+      font-size: 1rem;
+      margin-bottom: 5px;
+    }
+
+    .timeline-item p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+    .schedule-note {
+      margin-top: 14px;
+      color: #dfccf5;
+      font-size: 0.9rem;
+    }
+
+    .highlights {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .highlight {
+      border-radius: var(--radius-md);
+      background: linear-gradient(160deg, rgba(132, 74, 212, 0.27), rgba(61, 29, 109, 0.2));
+      border: 1px solid var(--line);
+      padding: 18px;
+      transition: transform 0.2s ease;
+    }
+
+    .highlight:hover {
+      transform: translateY(-4px);
+    }
+
+    .highlight h3 {
+      font-size: 1rem;
+      margin-bottom: 7px;
+    }
+
+    .highlight p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .faq {
+      margin-top: 24px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .faq-item {
+      overflow: clip;
+    }
+
+    .faq-btn {
+      width: 100%;
+      border: 0;
+      text-align: left;
+      padding: 16px 18px;
+      color: var(--text);
+      background: transparent;
+      cursor: pointer;
+      font: inherit;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-family: "Sora", sans-serif;
+    }
+
+    .faq-btn span {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .faq-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(185, 137, 255, 0.22);
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      line-height: 1;
+      color: var(--secondary);
+      transition: transform 0.2s ease;
+    }
+
+    .faq-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.25s ease;
+    }
+
+    .faq-content p {
+      margin: 0;
+      padding: 0 18px 16px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .form-card {
+      margin-top: 24px;
+      padding: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .field {
+      display: grid;
+      gap: 6px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #d9c1f4;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid rgba(225, 199, 255, 0.2);
+      background: rgba(114, 70, 181, 0.22);
+      color: var(--text);
+      font: inherit;
+      border-radius: 12px;
+      padding: 11px 12px;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    select {
+      color-scheme: dark;
+      background-color: rgba(114, 70, 181, 0.28);
+    }
+
+    select option {
+      background-color: #2a1245;
+      color: #f6ecff;
+    }
+
+    select option:checked {
+      background-color: #5a2c93;
+      color: #ffffff;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #d5c0ee;
+      opacity: 0.7;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(238, 220, 255, 0.55);
+      box-shadow: 0 0 0 3px rgba(201, 135, 255, 0.25);
+      background: rgba(134, 84, 206, 0.26);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    .error-text,
+    .form-status {
+      font-size: 0.82rem;
+      margin: 0;
+    }
+
+    .field-help {
+      margin: 0;
+      font-size: 0.78rem;
+      color: var(--muted);
+      opacity: 0.9;
+    }
+
+    .error-text {
+      color: var(--danger);
+      display: none;
+    }
+
+    .field.invalid .error-text {
+      display: block;
+    }
+
+    .submit-row {
+      margin-top: 12px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-status {
+      color: var(--ok);
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .form-status.visible {
+      opacity: 1;
+    }
+
+    footer {
+      border-top: 1px solid rgba(212, 181, 255, 0.2);
+      margin-top: clamp(36px, 6vw, 70px);
+      background: rgba(18, 9, 31, 0.5);
+    }
+
+    .footer-wrap {
+      padding: 20px 0;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #d6c2ec;
+      font-size: 0.92rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a:hover,
+    .footer-links a:focus-visible {
+      color: var(--secondary);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .event-theme,
+      .event-theme::before,
+      .theme-value {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 930px) {
+      .hero-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-3,
+      .highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .countdown-wrap {
+        margin-top: 10px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: grid;
+        gap: 4px;
+        padding: 8px 20px 16px;
+        background: rgba(16, 8, 27, 0.97);
+        border-bottom: 1px solid rgba(206, 170, 249, 0.25);
+        transform-origin: top;
+        transform: scaleY(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: 0.2s ease;
+      }
+
+      .nav-links.open {
+        transform: scaleY(1);
+        opacity: 1;
+        pointer-events: auto;
+      }
+
+      .nav-links a {
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .nav-links a:hover {
+        background: rgba(170, 112, 242, 0.16);
+      }
+
+      .menu-btn {
+        display: inline-block;
+      }
+
+      .desktop-cta {
+        display: none;
+      }
+
+      .brand-year {
+        display: none;
+      }
+
+      .cards-3,
+      .highlights,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .countdown-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .submit-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-wrap">
+      <a class="brand" href="#home" aria-label="RecHERsion 2026 Home">
+        <img class="brand-mark" src="recHERsion_logo_without_bg.png" alt="RecHERsion logo" />
+        <span class="brand-year"></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#chapters">Chapters</a>
+        <a href="#timeline">Timeline</a>
+        <a href="#highlights">Highlights</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <a class="cta-btn desktop-cta" href="#register">Register</a>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="hero">
+      <div class="container hero-grid">
+        <div class="reveal">
+          <div class="eyebrow">All Girls Coding Event | 2026 Edition</div>
+          <h1>Professional coding stage, built by three ACM chapters.</h1>
+          <p>
+            RecHERsion 2026 is hosted by <strong>ACM-W NIT Karnataka</strong>, <strong>ACM-W BPDC</strong>, and
+            <strong>ACM RIT</strong> to create an ambitious, women-focused competitive programming experience.
+          </p>
+          <p class="event-theme">
+            <span class="theme-label">Theme</span>
+            <span class="theme-value">"Everyday Chaos, Algorithm Solutions"</span>
+          </p>
+          <div class="hero-actions">
+            <a class="cta-btn" href="#register">Get Event Updates</a>
+            <a class="ghost-btn" href="#timeline">View Timeline</a>
+          </div>
+        </div>
+
+        <aside class="countdown-wrap reveal" aria-live="polite">
+          <div class="countdown-head">
+            <div>
+              <h3>Countdown to Contest Day</h3>
+              <p>Contest starts on 18 April 2026, 9:00 AM IST</p>
+            </div>
+          </div>
+          <div class="countdown-grid" id="countdown">
+            <div class="time-box"><strong id="days">--</strong><span>Days</span></div>
+            <div class="time-box"><strong id="hours">--</strong><span>Hours</span></div>
+            <div class="time-box"><strong id="minutes">--</strong><span>Minutes</span></div>
+            <div class="time-box"><strong id="seconds">--</strong><span>Seconds</span></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="chapters" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Host Chapters</h2>
+        <p class="section-sub reveal">
+          This edition is powered by a three-chapter collaboration. Each chapter contributes community, mentorship,
+          and event operations to make RecHERsion 2026 stronger.
+        </p>
+
+        <div class="cards-3">
+          <article class="chapter-card reveal">
+            <div class="chapter-logo">
+              <a
+                class="chapter-logo-link"
+                href="https://acmwnitk.hosting.acm.org/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Visit ACM-W NITK website"
+              >
+                <img src="Chapter_logos/ACMW_NITK_Logo.PNG" alt="ACM-W NIT Karnataka chapter logo" />
+              </a>
+            </div>
+            <h3>ACM-W NIT Karnataka</h3>
+            <p>Lead chapter for event strategy, challenge design, and national outreach.</p>
+          </article>
+
+          <article class="chapter-card reveal">
+            <div class="chapter-logo">
+              <a
+                class="chapter-logo-link"
+                href="https://www.acm-wbpdc.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Visit ACM-W BPDC website"
+              >
+                <img src="Chapter_logos/ACMW_BPDC_Logo.PNG" alt="ACM-W BPDC chapter logo" />
+              </a>
+            </div>
+            <h3>ACM-W BPDC</h3>
+            <p>Co-host chapter supporting technical moderation and driving participant engagement, and community support.</p>
+          </article>
+
+          <article class="chapter-card reveal">
+            <div class="chapter-logo">
+              <a
+                class="chapter-logo-link"
+                href="https://www.acm-wbpdc.com/"
+                target="_blank"
+                rel="noreferrer noopener"
+                aria-label="Visit ACM RIT website"
+              >
+                <img src="Chapter_logos/ACM_RIT_Logo.jpeg" alt="ACM RIT chapter logo" />
+              </a>
+            </div>
+            <h3>ACM RIT</h3>
+            <p>Co-host chapter supporting competitive and fair, high-quality contest flow.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">About The Event</h2>
+        <p class="section-sub reveal">
+          RecHERsion is a women-focused competitive coding event designed for students who want to improve
+          algorithmic problem solving in a high-energy, professional environment.
+        </p>
+
+        <div class="about-grid">
+          <article class="info-card reveal">
+            <h3>What participants can expect</h3>
+            <ul class="info-list">
+              <li>Curated problem sets with balanced difficulty and clear statements.</li>
+              <li>Structured timeline with chapter-led communications and support.</li>
+              <li>Pan-campus visibility, recognition, and growth opportunities.</li>
+              <li>An inclusive and motivating contest atmosphere designed for women in tech.</li>
+            </ul>
+          </article>
+
+          <aside class="info-card reveal">
+            <h3>At a glance</h3>
+            <div class="stats-grid">
+              <div class="stat-chip">
+                <strong>3</strong>
+                <span>Host Chapters</span>
+              </div>
+              <div class="stat-chip">
+                <strong>4th</strong>
+                <span>Edition</span>
+              </div>
+              <div class="stat-chip">
+                <strong>Online</strong>
+                <span>Contest Mode</span>
+              </div>
+              <div class="stat-chip">
+                <strong>Women</strong>
+                <span>Focused</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="timeline" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Event Timeline</h2>
+        <p class="section-sub reveal">Official schedule for 14 April 2026 to 19 April 2026.</p>
+
+        <div class="timeline">
+          <article class="timeline-item reveal">
+            <span class="when">14 April 2026</span>
+            <h4>Theme Reveal and Rules Announcement</h4>
+            <p>Theme reveal, rules announcement, and post-reveal cash prize distribution details.</p>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="when">15 April 2026</span>
+            <h4>Finalizing Questions and Publicity</h4>
+            <p>Finalize questions and continue marketing and outreach (publicity).</p>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="when">17 April 2026</span>
+            <h4>Publicity Push</h4>
+            <p>Focused marketing and outreach (publicity) across channels.</p>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="when">18 April 2026</span>
+            <h4>Contest Begins</h4>
+            <p>Contest starts at 9:00 AM IST.</p>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="when">19 April 2026</span>
+            <h4>Winner Announcement</h4>
+            <p>Final results and winner announcements.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Frequently Asked Questions</h2>
+        <p class="section-sub reveal">Common questions from participants and campus communities.</p>
+
+        <div class="faq">
+          <article class="faq-item reveal">
+            <button class="faq-btn" type="button" aria-expanded="false">
+              <span>Is there any registration fee for RecHERsion 2026?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content">
+              <p>No. Participation is free for eligible students.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-btn" type="button" aria-expanded="false">
+              <span>Can students from any college join?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content">
+              <p>Yes. The event is intended for women participants from eligible institutions.</p>
+            </div>
+          </article>
+
+          <article class="faq-item reveal">
+            <button class="faq-btn" type="button" aria-expanded="false">
+              <span>Will the contest be online or offline?</span>
+              <span class="faq-icon" aria-hidden="true">+</span>
+            </button>
+            <div class="faq-content">
+              <p>This edition is planned as an online coding contest. Final platform details will be announced.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="register" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Register Here</h2>
+        <p class="section-sub reveal">
+            Kindly fill out your details in the form below to receive updates about the event, including theme reveal, rules announcement, and other important communications. We look forward to having you join us for RecHERsion 2026!
+        </p>
+
+        <form id="interestForm" class="form-card reveal" novalidate>
+          <div class="form-grid">
+            <div class="field" data-field="name">
+              <label for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Enter your full name" required />
+              <p class="error-text">Please enter your name.</p>
+            </div>
+
+            <div class="field" data-field="email">
+              <label for="email">Email Address</label>
+              <input id="email" name="email" type="email" placeholder="name@college.edu" required />
+              <p class="error-text">Please enter a valid email address.</p>
+            </div>
+
+            <div class="field" data-field="institute">
+              <label for="institute">Institute Name</label>
+              <input id="institute" name="institute" type="text" placeholder="Your institute name" required />
+              <p class="error-text">Please enter your institute name.</p>
+            </div>
+
+            <div class="field" data-field="degree">
+              <label for="degree">Degree Name</label>
+              <input id="degree" name="degree" type="text" placeholder="B.Tech / B.E / B.Sc / etc." required />
+              <p class="error-text">Please enter your degree name.</p>
+            </div>
+
+            <div class="field" data-field="year">
+              <label for="year">Current Year of Education (UG)</label>
+              <select id="year" name="year" required>
+                <option value="">Select year</option>
+                <option value="I">I</option>
+                <option value="II">II</option>
+                <option value="III">III</option>
+                <option value="IV">IV</option>
+                <option value="V">V</option>
+              </select>
+              <p class="error-text">Please select your current year of education.</p>
+            </div>
+
+            <div class="field" data-field="dob">
+              <label for="dob">Date of Birth</label>
+              <input id="dob" name="dob" type="date" required />
+              <p class="error-text">Please enter your date of birth.</p>
+            </div>
+
+            <div class="field" data-field="phone">
+              <label for="phone">Phone Number (WhatsApp Number)</label>
+              <input id="phone" name="phone" type="tel" placeholder="+91 XXXXXXXXXX" required />
+              <p class="error-text">Please enter a valid phone or WhatsApp number.</p>
+            </div>
+
+            <div class="field" data-field="hackerRank">
+              <label for="hackerRank">HackerRank Handle</label>
+              <input id="hackerRank" name="hackerRank" type="text" placeholder="your_handle" required />
+              <p class="error-text">Please enter your HackerRank handle.</p>
+            </div>
+
+            <div class="field full">
+              <label for="imProfile">Link to your Instant Messaging profile (if not active on WhatsApp)</label>
+              <input id="imProfile" name="imProfile" type="url" placeholder="https://..." />
+              <p class="field-help">Optional: Share a Telegram/Discord/other instant messaging profile link.</p>
+            </div>
+          </div>
+
+          <div class="submit-row">
+            <button class="cta-btn" type="submit">Submit Interest</button>
+            <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <strong>RecHERsion 2026</strong>
+      <span>Hosted by ACM-W NIT Karnataka, ACM-W BPDC, and ACM RIT</span>
+      <div class="footer-links">
+        <a href="#">Instagram</a>
+        <a href="#">LinkedIn</a>
+        <a href="mailto:acmw@nitk.edu.in">acmw@nitk.edu.in</a>
+      </div>
+    </div>
+  </footer>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn?.addEventListener("click", () => {
+      const expanded = menuBtn.getAttribute("aria-expanded") === "true";
+      menuBtn.setAttribute("aria-expanded", String(!expanded));
+      navLinks.classList.toggle("open");
+    });
+
+    navLinks?.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        menuBtn.setAttribute("aria-expanded", "false");
+        navLinks.classList.remove("open");
+      });
+    });
+
+    const revealItems = document.querySelectorAll(".reveal");
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const contestDate = new Date("2026-04-18T09:00:00+05:30").getTime();
+    const dayNode = document.getElementById("days");
+    const hourNode = document.getElementById("hours");
+    const minuteNode = document.getElementById("minutes");
+    const secondNode = document.getElementById("seconds");
+
+    function pad(value) {
+      return String(value).padStart(2, "0");
+    }
+
+    function updateCountdown() {
+      const now = Date.now();
+      const gap = Math.max(0, contestDate - now);
+
+      const days = Math.floor(gap / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((gap / (1000 * 60 * 60)) % 24);
+      const minutes = Math.floor((gap / (1000 * 60)) % 60);
+      const seconds = Math.floor((gap / 1000) % 60);
+
+      dayNode.textContent = pad(days);
+      hourNode.textContent = pad(hours);
+      minuteNode.textContent = pad(minutes);
+      secondNode.textContent = pad(seconds);
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+
+    document.querySelectorAll(".faq-item").forEach((item) => {
+      const btn = item.querySelector(".faq-btn");
+      const content = item.querySelector(".faq-content");
+
+      btn.addEventListener("click", () => {
+        const isOpen = item.classList.contains("open");
+        document.querySelectorAll(".faq-item").forEach((other) => {
+          other.classList.remove("open");
+          const otherBtn = other.querySelector(".faq-btn");
+          const otherContent = other.querySelector(".faq-content");
+          otherBtn.setAttribute("aria-expanded", "false");
+          otherContent.style.maxHeight = "0px";
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+          btn.setAttribute("aria-expanded", "true");
+          content.style.maxHeight = `${content.scrollHeight}px`;
+        }
+      });
+    });
+
+    const form = document.getElementById("interestForm");
+    const formStatus = document.getElementById("formStatus");
+
+    function validateEmail(value) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+    }
+
+    function validatePhone(value) {
+      const digits = value.replace(/\D/g, "");
+      return digits.length >= 8;
+    }
+
+    function setInvalid(fieldName, invalid) {
+      const field = form.querySelector(`[data-field="${fieldName}"]`);
+      field.classList.toggle("invalid", invalid);
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const name = String(data.get("name") || "").trim();
+      const email = String(data.get("email") || "").trim();
+      const institute = String(data.get("institute") || "").trim();
+      const degree = String(data.get("degree") || "").trim();
+      const year = String(data.get("year") || "").trim();
+      const dob = String(data.get("dob") || "").trim();
+      const phone = String(data.get("phone") || "").trim();
+      const hackerRank = String(data.get("hackerRank") || "").trim();
+      const imProfile = String(data.get("imProfile") || "").trim();
+
+      const invalidName = !name;
+      const invalidEmail = !validateEmail(email);
+      const invalidInstitute = !institute;
+      const invalidDegree = !degree;
+      const invalidYear = !year;
+      const invalidDob = !dob;
+      const invalidPhone = !validatePhone(phone);
+      const invalidHackerRank = !hackerRank;
+
+      setInvalid("name", invalidName);
+      setInvalid("email", invalidEmail);
+      setInvalid("institute", invalidInstitute);
+      setInvalid("degree", invalidDegree);
+      setInvalid("year", invalidYear);
+      setInvalid("dob", invalidDob);
+      setInvalid("phone", invalidPhone);
+      setInvalid("hackerRank", invalidHackerRank);
+
+      if (invalidName || invalidEmail || invalidInstitute || invalidDegree || invalidYear || invalidDob || invalidPhone || invalidHackerRank) {
+        formStatus.textContent = "Please correct the highlighted fields.";
+        formStatus.classList.add("visible");
+        return;
+      }
+
+      const key = "rechersion_interest_responses";
+      const existing = JSON.parse(localStorage.getItem(key) || "[]");
+      existing.push({
+        name,
+        email,
+        institute,
+        degree,
+        year,
+        dob,
+        phone,
+        hackerRank,
+        imProfile,
+        submittedAt: new Date().toISOString()
+      });
+      localStorage.setItem(key, JSON.stringify(existing));
+
+      form.reset();
+      ["name", "email", "institute", "degree", "year", "dob", "phone", "hackerRank"].forEach((fieldName) => setInvalid(fieldName, false));
+      formStatus.textContent = "Thank you. Your interest has been recorded.";
+      formStatus.classList.add("visible");
+    });
+  </script>
+</body>
+</html>
