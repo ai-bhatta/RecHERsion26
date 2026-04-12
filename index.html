@@ -1088,7 +1088,7 @@
             <div class="chapter-logo">
               <a
                 class="chapter-logo-link"
-                href="https://www.acm-wbpdc.com/"
+                href="https://acmrit.vercel.app"
                 target="_blank"
                 rel="noreferrer noopener"
                 aria-label="Visit ACM RIT website"
@@ -1162,6 +1162,12 @@
             <span class="when">15 April 2026</span>
             <h4>Finalizing Questions and Publicity</h4>
             <p>Finalize questions and continue marketing and outreach (publicity).</p>
+          </article>
+
+          <article class="timeline-item reveal">
+            <span class="when">16 April 2026</span>
+            <h4>Publicity and HackerRank Posting</h4>
+            <p>Marketing and outreach continues, and the contest is posted on HackerRank.</p>
           </article>
 
           <article class="timeline-item reveal">
@@ -1316,6 +1322,8 @@
     </div>
   </footer>
   <script>
+    const REGISTER_API_PATH = "/api/register";
+
     const menuBtn = document.getElementById("menuBtn");
     const navLinks = document.getElementById("navLinks");
 
@@ -1399,6 +1407,7 @@
 
     const form = document.getElementById("interestForm");
     const formStatus = document.getElementById("formStatus");
+    const submitButton = form.querySelector('button[type="submit"]');
 
     function validateEmail(value) {
       return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -1414,8 +1423,31 @@
       field.classList.toggle("invalid", invalid);
     }
 
-    form.addEventListener("submit", (event) => {
+    async function submitRegistration(payload) {
+      const response = await fetch(REGISTER_API_PATH, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        let message = "Failed to submit registration.";
+        try {
+          const parsed = await response.json();
+          message = parsed.error || parsed.message || message;
+        } catch (_) {
+          const raw = await response.text();
+          if (raw) message = raw;
+        }
+        throw new Error(message);
+      }
+    }
+
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
+
       const data = new FormData(form);
       const name = String(data.get("name") || "").trim();
       const email = String(data.get("email") || "").trim();
@@ -1451,9 +1483,7 @@
         return;
       }
 
-      const key = "rechersion_interest_responses";
-      const existing = JSON.parse(localStorage.getItem(key) || "[]");
-      existing.push({
+      const payload = {
         name,
         email,
         institute,
@@ -1461,16 +1491,26 @@
         year,
         dob,
         phone,
-        hackerRank,
         imProfile,
-        submittedAt: new Date().toISOString()
-      });
-      localStorage.setItem(key, JSON.stringify(existing));
+        hackerRank
+      };
 
-      form.reset();
-      ["name", "email", "institute", "degree", "year", "dob", "phone", "hackerRank"].forEach((fieldName) => setInvalid(fieldName, false));
-      formStatus.textContent = "Thank you. Your interest has been recorded.";
-      formStatus.classList.add("visible");
+      try {
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting...";
+        await submitRegistration(payload);
+
+        form.reset();
+        ["name", "email", "institute", "degree", "year", "dob", "phone", "hackerRank"].forEach((fieldName) => setInvalid(fieldName, false));
+        formStatus.textContent = "Thank you. Your registration has been submitted.";
+        formStatus.classList.add("visible");
+      } catch (error) {
+        formStatus.textContent = error.message || "Could not submit right now. Please try again.";
+        formStatus.classList.add("visible");
+      } finally {
+        submitButton.disabled = false;
+        submitButton.textContent = "Submit Interest";
+      }
     });
   </script>
 </body>

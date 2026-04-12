@@ -1,0 +1,7 @@
+# Local environment files
+.env
+.env.*
+
+# Service account keys (never commit)
+*service-account*.json
+*credentials*.json
