@@ -755,6 +755,77 @@
       font-weight: 600;
     }
 
+    .format-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .format-card {
+      border: 1px solid rgba(220, 188, 255, 0.3);
+      background: linear-gradient(155deg, rgba(128, 74, 201, 0.24), rgba(65, 35, 109, 0.2));
+      border-radius: 14px;
+      padding: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .format-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(234, 213, 255, 0.46);
+    }
+
+    .format-card h3 {
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: #dcc6f5;
+    }
+
+    .format-card p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #f5e8ff;
+      font-weight: 700;
+    }
+
+    .rules-grid {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 0.95fr 1.45fr;
+      gap: 14px;
+    }
+
+    .rules-card {
+      border: 1px solid rgba(220, 188, 255, 0.3);
+      background: linear-gradient(155deg, rgba(113, 66, 186, 0.22), rgba(57, 29, 97, 0.2));
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .rules-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 10px;
+      color: #f0e2ff;
+    }
+
+    .rules-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 8px;
+      color: #decaef;
+      line-height: 1.5;
+    }
+
+    .rules-list li {
+      padding: 7px 8px;
+      border-radius: 9px;
+      background: rgba(181, 139, 241, 0.12);
+      border: 1px solid rgba(220, 190, 255, 0.16);
+    }
+
     @keyframes prizePulse {
       0%,
       100% {
@@ -1000,12 +1071,17 @@
       }
 
       .cards-3,
-      .highlights {
+      .highlights,
+      .format-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .countdown-wrap {
         margin-top: 10px;
+      }
+
+      .rules-grid {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -1056,7 +1132,8 @@
 
       .cards-3,
       .highlights,
-      .form-grid {
+      .form-grid,
+      .format-grid {
         grid-template-columns: 1fr;
       }
 
@@ -1272,6 +1349,70 @@
             <li>Keep your submitted email active so you do not miss important updates.</li>
           </ul>
         </article>
+      </div>
+    </section>
+
+    <section id="format" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Contest Format</h2>
+        <p class="section-sub reveal">A focused 3-hour competitive coding format designed to test speed, logic, and accuracy.</p>
+        <div class="format-grid">
+          <article class="format-card reveal">
+            <h3>Problems</h3>
+            <p>6 Problems</p>
+          </article>
+          <article class="format-card reveal">
+            <h3>Difficulty</h3>
+            <p>Medium to Hard</p>
+          </article>
+          <article class="format-card reveal">
+            <h3>Scoring</h3>
+            <p>ICPC-Style (Penalty)</p>
+          </article>
+          <article class="format-card reveal">
+            <h3>Participation</h3>
+            <p>Individual Only</p>
+          </article>
+          <article class="format-card reveal">
+            <h3>Languages</h3>
+            <p>C++, Python, Java</p>
+          </article>
+          <article class="format-card reveal">
+            <h3>Submissions</h3>
+            <p>Unlimited Attempts</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="rules" class="section">
+      <div class="container">
+        <h2 class="section-title reveal">Eligibility & Rules</h2>
+        <p class="section-sub reveal">Please review all contest requirements carefully before participating.</p>
+        <div class="rules-grid">
+          <article class="rules-card reveal">
+            <h3>Eligibility</h3>
+            <ol class="rules-list">
+              <li>Open to undergraduate students (Engineering or related fields).</li>
+              <li>Only women participants allowed.</li>
+              <li>Inter-college participation permitted.</li>
+            </ol>
+          </article>
+
+          <article class="rules-card reveal">
+            <h3>Rules & Regulations</h3>
+            <ol class="rules-list">
+              <li>All code must be written independently; plagiarism is strictly prohibited.</li>
+              <li>Use of AI tools, online forums, or external help is not allowed.</li>
+              <li>Only individual participation; no team collaboration permitted.</li>
+              <li>Participants must use only their registered HackerRank account.</li>
+              <li>All submissions must be completed within the 3-hour time limit.</li>
+              <li>Communication with other participants during the contest is prohibited.</li>
+              <li>Any rule violation or suspicious activity will lead to disqualification.</li>
+              <li>Organising team’s decision will be final and binding.</li>
+            </ol>
+          </article>
+        </div>
       </div>
     </section>
 
