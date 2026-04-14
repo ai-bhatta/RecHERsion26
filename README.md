@@ -12,7 +12,7 @@ RecHERsion 2026 is an all-girls coding event hosted collaboratively by:
 
 ## Event Dates
 
-- **18 April 2026, 9:00 AM IST**: Contest begins
+- **18 April 2026, 10:00 AM IST**: Contest begins
 - **19 April 2026**: Winner announcement
 
 
